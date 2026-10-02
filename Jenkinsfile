@@ -24,4 +24,16 @@ pipeline {
             }
         }
     }
+
+    post {
+        success {
+            echo 'Pipeline succeeded! Deployment done.'
+        }
+        failure {
+            echo 'Pipeline failed. Check logs.'
+        }
+        always {
+            archiveArtifacts artifacts: 'deploy/*', allowEmptyArchive: true
+        }
+    }
 }
